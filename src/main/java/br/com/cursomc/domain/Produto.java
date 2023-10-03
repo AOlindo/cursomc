@@ -9,28 +9,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity
-public class Categoria implements Serializable {
+public class Produto implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	
-	@ManyToMany(mappedBy = "categoria")
-	private List<Produto> produtos = new ArrayList<>();
+	private Double preco;
 
-	public Categoria() {
+	@ManyToMany
+	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "produto_id"))
+	private List<Categoria> categoria = new ArrayList<>();
+
+	public Produto() {
 
 	}
 
-	public Categoria(Long id, String nome) {
+	public Produto(Long id, String nome, Double preco) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.preco = preco;
 	}
 
 	public Long getId() {
@@ -49,18 +54,25 @@ public class Categoria implements Serializable {
 		this.nome = nome;
 	}
 
+	public Double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
-	
-	public List<Produto> getProdutos() {
-		return produtos;
+
+	public List<Categoria> getCategoria() {
+		return categoria;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setCategoria(List<Categoria> categoria) {
+		this.categoria = categoria;
 	}
 
 	@Override
@@ -71,9 +83,8 @@ public class Categoria implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categoria other = (Categoria) obj;
+		Produto other = (Produto) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 
 }
