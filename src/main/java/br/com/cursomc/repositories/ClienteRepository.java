@@ -8,4 +8,5 @@ import br.com.cursomc.domain.Cliente;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 	
+	Cliente findOneById(Long id);
 }
