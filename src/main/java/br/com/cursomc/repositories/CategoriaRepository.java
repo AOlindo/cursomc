@@ -6,5 +6,6 @@ import br.com.cursomc.domain.Categoria;
 
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
-
+	
+	Categoria findOneById(Long id);
 }
