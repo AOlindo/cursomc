@@ -7,4 +7,5 @@ import br.com.cursomc.domain.Pedido;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
+	Pedido findOneById(Long id);
 }
