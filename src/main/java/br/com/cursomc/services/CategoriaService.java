@@ -29,5 +29,10 @@ public class CategoriaService {
 		categoria.setId(null);
 		return categoriaRepository.save(categoria);
 	}
+	
+	public Categoria atualiza (Categoria categoria) {
+		buscar(categoria.getId());
+		return categoriaRepository.save(categoria);
+	}
 
 }
