@@ -4,6 +4,7 @@ import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,7 +31,7 @@ public class CategoriaResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> inserir(@RequestBody Categoria categoria) {
+	public ResponseEntity<Void> inserir(@RequestBody Categoria categoria) {
 		categoria = categoriaService.inserir(categoria);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
 				.toUri();// Gera a URL da categoria cadastrada.
@@ -40,10 +41,17 @@ public class CategoriaResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<?> atualizarCategoria(@RequestBody Categoria categoria, @PathVariable Long id){
+	public ResponseEntity<Void> atualizarCategoria(@RequestBody Categoria categoria, @PathVariable Long id){
 		categoria.setId(id);
 		categoria = categoriaService.atualiza(categoria);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id){
+		categoriaService.delete(id);
+		return ResponseEntity.noContent().build();
+		
 	}
 
 }
