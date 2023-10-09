@@ -7,4 +7,6 @@ import br.com.cursomc.domain.Produto;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
+	Produto findOneById(Long id);
+	
 }

@@ -7,7 +7,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.cursomc.domain.Categoria;
-import br.com.cursomc.dto.CategoriaDTO;
 import br.com.cursomc.repositories.CategoriaRepository;
 import br.com.cursomc.services.exceptions.DataIntegrityException;
 import br.com.cursomc.services.exceptions.ObjectNotFoundException;
