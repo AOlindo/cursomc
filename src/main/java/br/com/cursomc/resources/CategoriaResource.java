@@ -21,6 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.cursomc.domain.Categoria;
 import br.com.cursomc.dto.CategoriaDTO;
 import br.com.cursomc.services.CategoriaService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -36,19 +37,20 @@ public class CategoriaResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> inserir(@RequestBody Categoria categoria) {
+	public ResponseEntity<Void> inserir(@Valid @RequestBody CategoriaDTO categoriaDto) {
+		Categoria categoria = categoriaService.fromDTO(categoriaDto);
 		categoria = categoriaService.inserir(categoria);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
 				.toUri();// Gera a URL da categoria cadastrada.
-
 		return ResponseEntity.created(uri).build();
 
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> atualizarCategoria(@RequestBody Categoria categoria, @PathVariable Long id){
-		categoria.setId(id);
-		categoria = categoriaService.atualiza(categoria);
+	public ResponseEntity<Void> atualizarCategoria(@Valid @RequestBody CategoriaDTO categoriaDto, @PathVariable Long id){
+		Categoria cateDto = categoriaService.fromDTO(categoriaDto);
+		cateDto.setId(id);
+		cateDto = categoriaService.atualiza(cateDto);
 		return ResponseEntity.noContent().build();
 	}
 	
