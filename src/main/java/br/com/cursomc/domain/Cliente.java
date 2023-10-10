@@ -66,7 +66,7 @@ public class Cliente implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -105,10 +105,6 @@ public class Cliente implements Serializable {
 
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
-	}
-
-	public Set<String> getTelefone() {
-		return telefones;
 	}
 
 	public void setTelefone(Set<String> telefone) {
