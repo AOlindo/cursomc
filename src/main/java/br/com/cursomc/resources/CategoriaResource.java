@@ -39,48 +39,46 @@ public class CategoriaResource {
 	@PostMapping
 	public ResponseEntity<Void> inserir(@Valid @RequestBody CategoriaDTO categoriaDto) {
 		Categoria categoria = categoriaService.fromDTO(categoriaDto);
-		categoria = categoriaService.inserir(categoria);
+		categoria = categoriaService.insert(categoria);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId())
 				.toUri();// Gera a URL da categoria cadastrada.
 		return ResponseEntity.created(uri).build();
 
 	}
-	
+
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> atualizarCategoria(@Valid @RequestBody CategoriaDTO categoriaDto, @PathVariable Long id){
+	public ResponseEntity<Void> atualizarCategoria(@Valid @RequestBody CategoriaDTO categoriaDto,
+			@PathVariable Long id) {
 		Categoria cateDto = categoriaService.fromDTO(categoriaDto);
 		cateDto.setId(id);
 		cateDto = categoriaService.update(cateDto);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id){
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		categoriaService.delete(id);
 		return ResponseEntity.noContent().build();
-		
+
 	}
+
 	@GetMapping
 	public ResponseEntity<List<CategoriaDTO>> findAll() {
 		List<Categoria> lista = categoriaService.buscarTodos();
-		List<CategoriaDTO> listaDto = lista.stream().map(categoria -> new CategoriaDTO(categoria)).collect(Collectors.toList());
+		List<CategoriaDTO> listaDto = lista.stream().map(categoria -> new CategoriaDTO(categoria))
+				.collect(Collectors.toList());
 		return ResponseEntity.ok().body(listaDto);
 	}
-	
+
 	@GetMapping("/page")
-	public ResponseEntity<Page<CategoriaDTO>> findPage(
-			@RequestParam(value = "page", defaultValue = "0") Integer page,
+	public ResponseEntity<Page<CategoriaDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
 			@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
-			@RequestParam(value = "direction", defaultValue = "ASC") String direction){
-				
-			Page<Categoria> lista = categoriaService.findPage(page, linesPerPage, orderBy, direction);
-			Page<CategoriaDTO> listaDto = lista.map(categoria -> new CategoriaDTO(categoria));
-			return ResponseEntity.ok().body(listaDto);
-			}
-			
-			
+			@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
+
+		Page<Categoria> lista = categoriaService.findPage(page, linesPerPage, orderBy, direction);
+		Page<CategoriaDTO> listaDto = lista.map(categoria -> new CategoriaDTO(categoria));
+		return ResponseEntity.ok().body(listaDto);
 	}
-			
 
-
+}

@@ -7,4 +7,5 @@ import br.com.cursomc.domain.Cidade;
 
 public interface CidadeRepository extends JpaRepository<Cidade, Long> {
 
+
 }
