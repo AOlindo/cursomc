@@ -25,7 +25,7 @@ public class CategoriaService {
 		this.categoriaRepository = categoriaRepository;
 	}
 
-	public Categoria buscar(Long id) {
+	public Categoria find(Long id) {
 		Categoria obj = categoriaRepository.findOneById(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException("Id " + id + " não encontrado");
@@ -38,13 +38,15 @@ public class CategoriaService {
 		return categoriaRepository.save(categoria);
 	}
 
-	public Categoria atualiza(Categoria categoria) {
-		buscar(categoria.getId());
+	public Categoria update(Categoria request) {
+		Categoria categoria  = find(request.getId());
+		updateData(categoria, request);
 		return categoriaRepository.save(categoria);
 	}
 
+
 	public void delete(Long id) {
-		buscar(id);
+		find(id);
 		try {
 			categoriaRepository.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
@@ -64,6 +66,11 @@ public class CategoriaService {
 	
 	public Categoria fromDTO(CategoriaDTO categoriaDTO) {
 		return new Categoria(categoriaDTO.getId(),categoriaDTO.getNome());
+	}
+	
+	private void updateData(Categoria categoria, Categoria obj) {
+		categoria.setNome(obj.getNome());
+	
 	}
 
 }

@@ -32,7 +32,7 @@ public class CategoriaResource {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Categoria> find(@PathVariable Long id) {
-		Categoria obj = categoriaService.buscar(id);
+		Categoria obj = categoriaService.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
@@ -50,7 +50,7 @@ public class CategoriaResource {
 	public ResponseEntity<Void> atualizarCategoria(@Valid @RequestBody CategoriaDTO categoriaDto, @PathVariable Long id){
 		Categoria cateDto = categoriaService.fromDTO(categoriaDto);
 		cateDto.setId(id);
-		cateDto = categoriaService.atualiza(cateDto);
+		cateDto = categoriaService.update(cateDto);
 		return ResponseEntity.noContent().build();
 	}
 	
