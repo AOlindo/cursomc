@@ -34,7 +34,7 @@ public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate
 		//Map estrutura de dados, coleção de pares <chave, valor> 
 		@SuppressWarnings("unchecked")
 		Map<String, String> map = (Map<String, String>) request.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-		Integer uriId = Integer.parseInt(map.get("id"));
+		Long uriId = Long.valueOf(map.get("id"));
 		
 		List<FieldMessage> list = new ArrayList<>();
 		

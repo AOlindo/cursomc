@@ -16,7 +16,6 @@ import br.com.cursomc.domain.Endereco;
 import br.com.cursomc.domain.enums.TipoCliente;
 import br.com.cursomc.dto.ClienteDTO;
 import br.com.cursomc.dto.ClienteNewDTO;
-import br.com.cursomc.repositories.CidadeRepository;
 import br.com.cursomc.repositories.ClienteRepository;
 import br.com.cursomc.repositories.EnderecoRepository;
 import br.com.cursomc.services.exceptions.DataIntegrityException;
