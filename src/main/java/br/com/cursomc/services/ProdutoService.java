@@ -27,7 +27,7 @@ public class ProdutoService {
 		this.produtoRepository = produtoRepository;
 	}
 
-	public Produto buscar(Long id) {
+	public Produto find(Long id) {
 		Produto produto = produtoRepository.findOneById(id);
 		return produto;
 	}
