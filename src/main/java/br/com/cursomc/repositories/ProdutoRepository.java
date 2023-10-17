@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import br.com.cursomc.domain.Categoria;
 import br.com.cursomc.domain.Produto;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {

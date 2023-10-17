@@ -3,7 +3,7 @@ package br.com.cursomc.domain;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import br.com.cursomc.domain.enums.EstadoPagamento;
-import jakarta.persistence.Entity;
+import javax.persistence.Entity;
 
 @Entity
 @JsonTypeName("pagamentoComCartao")

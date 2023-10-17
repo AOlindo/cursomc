@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.cursomc.domain.Categoria;
-import jakarta.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
 
 public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

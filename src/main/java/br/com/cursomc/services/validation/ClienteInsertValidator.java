@@ -11,8 +11,8 @@ import br.com.cursomc.dto.ClienteNewDTO;
 import br.com.cursomc.repositories.ClienteRepository;
 import br.com.cursomc.resources.exception.FieldMessage;
 import br.com.cursomc.services.validation.util.BR;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
 

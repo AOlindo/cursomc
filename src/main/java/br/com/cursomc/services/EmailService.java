@@ -3,7 +3,7 @@ package br.com.cursomc.services;
 import org.springframework.mail.SimpleMailMessage;
 
 import br.com.cursomc.domain.Pedido;
-import jakarta.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage;
 
 public interface EmailService {
 	

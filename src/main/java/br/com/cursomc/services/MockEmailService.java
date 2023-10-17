@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 
 import br.com.cursomc.domain.Pedido;
-import jakarta.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage;
 
 public class MockEmailService extends AbstractEmailService {
 

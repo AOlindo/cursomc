@@ -21,7 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.cursomc.domain.Categoria;
 import br.com.cursomc.dto.CategoriaDTO;
 import br.com.cursomc.services.CategoriaService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/categorias")

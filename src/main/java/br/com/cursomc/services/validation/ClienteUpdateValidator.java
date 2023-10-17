@@ -11,9 +11,9 @@ import br.com.cursomc.domain.Cliente;
 import br.com.cursomc.dto.ClienteDTO;
 import br.com.cursomc.repositories.ClienteRepository;
 import br.com.cursomc.resources.exception.FieldMessage;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 public class ClienteUpdateValidator implements ConstraintValidator<ClienteUpdate, ClienteDTO> {
 

@@ -22,7 +22,7 @@ import br.com.cursomc.domain.Cliente;
 import br.com.cursomc.dto.ClienteDTO;
 import br.com.cursomc.dto.ClienteNewDTO;
 import br.com.cursomc.services.ClienteService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/clientes")

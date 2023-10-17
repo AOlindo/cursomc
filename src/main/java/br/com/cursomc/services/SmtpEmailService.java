@@ -8,7 +8,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import br.com.cursomc.domain.Pedido;
-import jakarta.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage;
 
 public class SmtpEmailService extends AbstractEmailService {
 
