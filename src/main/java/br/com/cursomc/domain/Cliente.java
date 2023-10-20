@@ -34,6 +34,7 @@ public class Cliente implements Serializable {
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
+	private String imageUrl;
 	
 	@JsonIgnore
 	private String senha;
@@ -110,6 +111,14 @@ public class Cliente implements Serializable {
 		this.tipo = tipo.getCod();
 	}
 	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
 	public String getSenha() {
 		return senha;
 	}
@@ -170,6 +179,8 @@ public class Cliente implements Serializable {
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
 	}
+
+	
 
 	
 

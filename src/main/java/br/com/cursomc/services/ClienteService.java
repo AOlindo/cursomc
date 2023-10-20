@@ -29,16 +29,16 @@ import br.com.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ClienteService {
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+
 	@Autowired
 	private ClienteRepository clienteRepository;
-	
+
 	@Autowired
 	private EnderecoRepository enderecoRepository;
-	
+
 	@Autowired
 	private S3Service s3Service;
 
@@ -47,13 +47,13 @@ public class ClienteService {
 	}
 
 	public Cliente find(Long id) {
-		
+
 		UserSS user = UserService.authenticated();
-		
-		if(user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
 			throw new AuthorizationException("Acesso negado");
 		}
-		
+
 		Cliente obj = clienteRepository.findOneById(id);
 		if (obj == null) {
 			throw new ObjectNotFoundException("Id " + id + " não encontrado");
@@ -101,7 +101,7 @@ public class ClienteService {
 
 	public Cliente fromDTO(ClienteNewDTO objDto) {
 		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(),
-				TipoCliente.converteParaUmEnum(objDto.getTipo()),bCryptPasswordEncoder.encode(objDto.getSenha()));
+				TipoCliente.converteParaUmEnum(objDto.getTipo()), bCryptPasswordEncoder.encode(objDto.getSenha()));
 		Cidade cid = new Cidade(objDto.getCidadeId(), null, null);
 		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(),
 				objDto.getBairro(), objDto.getCep(), cli, cid);
@@ -120,8 +120,19 @@ public class ClienteService {
 		cliente.setNome(obj.getNome());
 		cliente.setEmail(obj.getEmail());
 	}
-	
+
 	public URI uploadProfilePicture(MultipartFile multipartFile) {
+		UserSS user = UserService.authenticated();
+		if (user == null) {
+			throw new AuthorizationException("Acesso negado");
+		}
+
+		URI uri = s3Service.uploadFile(multipartFile);
+
+		Cliente cliente = clienteRepository.findOneById(user.getId());
+		cliente.setImageUrl(uri.toString());
+		clienteRepository.save(cliente);
+
 		return s3Service.uploadFile(multipartFile);
 	}
 
