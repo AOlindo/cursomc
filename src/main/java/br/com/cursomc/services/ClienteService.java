@@ -1,5 +1,6 @@
 package br.com.cursomc.services;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.cursomc.domain.Cidade;
 import br.com.cursomc.domain.Cliente;
@@ -30,10 +32,15 @@ public class ClienteService {
 	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private S3Service s3Service;
 
 	public ClienteService(ClienteRepository clienteRepository) {
 		this.clienteRepository = clienteRepository;
@@ -112,6 +119,10 @@ public class ClienteService {
 	private void updateData(Cliente cliente, Cliente obj) {
 		cliente.setNome(obj.getNome());
 		cliente.setEmail(obj.getEmail());
+	}
+	
+	public URI uploadProfilePicture(MultipartFile multipartFile) {
+		return s3Service.uploadFile(multipartFile);
 	}
 
 }
