@@ -39,6 +39,13 @@ public class ClienteResource {
 		return ResponseEntity.ok().body(obj);
 	}
 	
+	@GetMapping("/email")
+	public ResponseEntity<Cliente> find(@RequestParam(value = "value") String email){
+		Cliente obj = clienteService.findByEmail(email);
+		return ResponseEntity.ok().body(obj);
+		
+	}
+	
 	@PostMapping
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO clienteDto) {
 		Cliente cliente = clienteService.fromDTO(clienteDto);
@@ -66,7 +73,7 @@ public class ClienteResource {
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping
 	public ResponseEntity<List<ClienteDTO>> findAll() {
-		List<Cliente> lista = clienteService.buscarTodos();
+		List<Cliente> lista = clienteService.findAll();
 		List<ClienteDTO> listaDto = lista.stream().map(cliente -> new ClienteDTO(cliente)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listaDto);
 	}
