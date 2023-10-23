@@ -75,15 +75,15 @@ public class DBService {
 	Categoria categoria6 = new Categoria(null, "Decoração");
 	Categoria categoria7 = new Categoria(null, "Perfumaria");
 		
-	Produto produto1 = new Produto(null, "Computador", 2000.00);
-	Produto produto2 = new Produto(null, "Impressora", 800.00);
-	Produto produto3 = new Produto(null, "Mouse", 80.00);
-	Produto produto4 = new Produto(null, "Mesa de escritório", 300.00);
-	Produto produto5 = new Produto(null, "Toalha", 50.00);
-	Produto produto6 = new Produto(null, "Colcha", 200.00);
-	Produto produto7 = new Produto(null, "Tv true color", 1200.00);
-	Produto produto8 = new Produto(null, "Roçadeira", 800.00);
-	Produto produto9 = new Produto(null, "Abajour", 100.00);
+	Produto produto1  = new Produto(null, "Computador", 2000.00);
+	Produto produto2  = new Produto(null, "Impressora", 800.00);
+	Produto produto3  = new Produto(null, "Mouse", 80.00);
+	Produto produto4  = new Produto(null, "Mesa de escritório", 300.00);
+	Produto produto5  = new Produto(null, "Toalha", 50.00);
+	Produto produto6  = new Produto(null, "Colcha", 200.00);
+	Produto produto7  = new Produto(null, "Tv true color", 1200.00);
+	Produto produto8  = new Produto(null, "Roçadeira", 800.00);
+	Produto produto9  = new Produto(null, "Abajour", 100.00);
 	Produto produto10 = new Produto(null, "Pendente", 180.00);
 	Produto produto11 = new Produto(null, "Shampoo", 90.00);
 	Produto produto12 = new Produto(null, "Produto 12", 10.00);
