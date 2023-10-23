@@ -1,3 +1,4 @@
+
 package br.com.cursomc.services.exceptions;
 
 public class AuthorizationException extends RuntimeException {
